@@ -1,0 +1,50 @@
+services:
+  # PHP-FPM сервис
+  php:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    volumes:
+      - ./src:/var/www
+    working_dir: /var/www
+    networks:
+      - app-network
+
+  # Nginx сервис
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src/public:/var/www/public
+    depends_on:
+      - php
+    networks:
+      - app-network
+
+  # MySQL сервис
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: tasks_db
+      MYSQL_USER: tasker
+      MYSQL_PASSWORD: task
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - app-network
+
+# Сеть для связи контейнеров
+networks:
+  app-network:
+    driver: bridge
+
+# Volume для данных MySQL
+volumes:
+  mysql-data:
