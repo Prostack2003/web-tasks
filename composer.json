@@ -1,8 +1,5 @@
 {
-  "name": "web-tasks",
-  "description": "Task Manager Project",
-  "type": "project",
   "autoload": {
-    "psr-4": {"Acme\\": "src/"}
+    "psr-4": {"classes\\": "src/Classes"}
   }
 }

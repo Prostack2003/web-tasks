@@ -7,9 +7,13 @@ RUN docker-php-ext-install pdo_mysql
 # Устанавливаем Composer
 COPY --from=composer/composer:latest-bin /composer /usr/bin/composer
 
-# Копируем исходный код в контейнер
-WORKDIR /var/www
-COPY src /var/www
-
 # Указываем рабочую директорию
-WORKDIR /var/www/public
+WORKDIR /var/www
+
+# Копируем composer.json и composer.lock
+COPY composer.json composer.lock /var/www/
+
+# Устанавливаем зависимости Composer
+RUN composer install --no-dev --optimize-autoloader
+
+COPY src /var/www/src

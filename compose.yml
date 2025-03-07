@@ -1,16 +1,14 @@
 services:
-  # PHP-FPM сервис
   php:
     build:
       context: .
       dockerfile: docker/php/Dockerfile
     volumes:
-      - ./src:/var/www
+      - ./:/var/www
     working_dir: /var/www
     networks:
       - app-network
 
-  # Nginx сервис
   nginx:
     build:
       context: .
@@ -18,13 +16,12 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./src/public:/var/www/public
+      - ./src/public:/var/www/src/public
     depends_on:
       - php
     networks:
       - app-network
 
-  # MySQL сервис
   db:
     image: mysql:8.0
     restart: always
@@ -40,11 +37,9 @@ services:
     networks:
       - app-network
 
-# Сеть для связи контейнеров
 networks:
   app-network:
     driver: bridge
 
-# Volume для данных MySQL
 volumes:
   mysql-data:
