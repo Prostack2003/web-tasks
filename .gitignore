@@ -1,3 +1,4 @@
 .idea
 composer.phar
 src/web-tasks
+.env
