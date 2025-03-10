@@ -4,7 +4,7 @@ require '../../vendor/autoload.php';
 use classes\Router;
 use controllers\PageController;
 
-$dotenv = Dotenv\Dotenv::createImmutable('../../.env');
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../..');
 $dotenv->load();
 
 
