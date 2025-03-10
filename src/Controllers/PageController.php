@@ -18,4 +18,9 @@ class PageController
     {
         include __DIR__ . "/../views/register.php";
     }
+
+    public function table(): void
+    {
+        include __DIR__ . "/../views/table.php";
+    }
 }

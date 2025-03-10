@@ -4,5 +4,9 @@
       "classes\\": "src/Classes",
       "controllers\\": "src/Controllers"
     }
+  },
+  "require": {
+    "ext-pdo": "*",
+    "vlucas/phpdotenv": "^5.6"
   }
 }
