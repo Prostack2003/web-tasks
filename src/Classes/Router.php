@@ -2,24 +2,46 @@
 
 namespace classes;
 
+use controllers\PageController;
+
+namespace classes;
+
 class Router
 {
-    public function __construct(
-        public string $currentUrl,
-        public array $routes,
-    )
+    private array $routes = [];
+
+    public function addRoute($method, $url, $handler): void
     {
-        $this->currentUrl = $_SERVER['REQUEST_URI'];
-        $this->routes = [];
+        $this->routes[$method][$url] = $handler;
     }
 
-    public function getCurrentUrl(): string
+    public function dispatch()
     {
-        return $this->currentUrl;
+        $method = $_SERVER['REQUEST_METHOD'];
+        $uri = $this->normalizeUri($_SERVER['REQUEST_URI']);
+
+        if (isset($this->routes[$method][$uri])) {
+            $handler = $this->routes[$method][$uri];
+            $this->callHandler($handler);
+        } else {
+            http_response_code(404);
+            echo "Страница не найдена";
+        }
     }
 
-    public function addRoute($method, $path) : void
+    private function callHandler($handler)
     {
-        $this->routes[$method] = $path;
+        if (is_array($handler)) {
+            [$className, $methodName] = $handler;
+            $controller = new $className();
+            $controller->$methodName();
+        } elseif (is_callable($handler)) {
+            $handler();
+        }
+    }
+
+    private function normalizeUri($uri)
+    {
+        return rtrim($uri, '/');
     }
 }
