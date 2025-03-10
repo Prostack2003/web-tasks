@@ -1,5 +1,8 @@
 {
   "autoload": {
-    "psr-4": {"classes\\": "src/Classes"}
+    "psr-4": {
+      "classes\\": "src/Classes",
+      "controllers\\": "src/Controllers"
+    }
   }
 }
