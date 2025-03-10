@@ -12,13 +12,13 @@ class Database
     public function __construct()
     {
         $this->db = new PDO(
-            'mysql:host=' . $_ENV['DB_CONNECTION'] . ';dbname=' . $_ENV['DB_HOST'],
+            'mysql:host=' . $_ENV['DB_CONNECTION'] . ';dbname=' . $_ENV['DB_DATABASE'],
             $_ENV['DB_USERNAME'],
             $_ENV['DB_PASSWORD']
         );
     }
 
-    public function query(string $sql, array $params = [])
+    public function query(string $sql, array $params = []): array
     {
         $stmt = $this->db->prepare($sql);
         if ( !empty($params) ) {
