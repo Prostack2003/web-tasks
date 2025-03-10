@@ -7,18 +7,26 @@ use PDO;
 
 class Database
 {
-    public function connect(
-        $host,
-        $dbName,
-        $user,
-        $password
-    ): void
+    private PDO $db;
+
+    public function __construct()
     {
-        try {
-            new PDO("mysql:host=$host;dbname=$dbName", $user, $password);
-        } catch (Exception $error) {
-            $errorMessage = $error->getMessage();
-            echo $errorMessage;
+        $this->db = new PDO(
+            'mysql:host=' . $_ENV['DB_CONNECTION'] . ';dbname=' . $_ENV['DB_HOST'],
+            $_ENV['DB_USERNAME'],
+            $_ENV['DB_PASSWORD']
+        );
+    }
+
+    public function query(string $sql, array $params = [])
+    {
+        $stmt = $this->db->prepare($sql);
+        if ( !empty($params) ) {
+            foreach ($params as $key => $value) {
+                $stmt->bindValue(":$key", $value);
+            }
         }
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
