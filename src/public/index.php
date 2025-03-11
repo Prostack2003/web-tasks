@@ -3,12 +3,16 @@
 require '../../vendor/autoload.php';
 use classes\Router;
 use controllers\PageController;
+use controllers\UserController;
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../..');
 $dotenv->load();
 
 
 $pageController = new PageController();
+$userController = new UserController();
+$activeUsers = $userController->showActiveUsers();
+$moneyUsers = $userController->showMoneyUser();
 
 
 $router = new Router();

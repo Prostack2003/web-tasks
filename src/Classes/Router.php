@@ -2,10 +2,6 @@
 
 namespace classes;
 
-use controllers\PageController;
-
-namespace classes;
-
 class Router
 {
     private array $routes = [];
