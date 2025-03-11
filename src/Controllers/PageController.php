@@ -19,8 +19,8 @@ class PageController
         include __DIR__ . "/../views/register.php";
     }
 
-    public function table(): void
+    public function dashboard(): void
     {
-        include __DIR__ . "/../views/table.php";
+        include __DIR__ . "/../views/dashboard.php";
     }
 }

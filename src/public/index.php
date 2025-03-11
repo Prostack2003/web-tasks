@@ -15,7 +15,7 @@ $router = new Router();
 $router->addRoute('GET', '/home', [PageController::class, 'home']);
 $router->addRoute('GET', '/register', [PageController::class, 'register']);
 $router->addRoute('GET', '/login', [PageController::class, 'login']);
-$router->addRoute('GET', '/table', [PageController::class, 'table']);
+$router->addRoute('GET', '/dashboard', [PageController::class, 'dashboard']);
 
 $router->dispatch();
 
