@@ -6,23 +6,35 @@ use classes\Database;
 
 class UserController
 {
-    public function showActiveUsers(): array
+    public function showUsers(): array
     {
         $db = new Database();
-        return $db->query("SELECT * FROM users WHERE is_active = 1");
+        return $db->query("SELECT * FROM users");
     }
 
-    public function addUser(
-        string $email,
-        string $fullName,
-        bool $is_active,
-        string $created_at
-    ): array {
+    public function addUser(string $email, string $fullName, bool $is_active): bool
+    {
         $db = new Database();
-        return $db->query(
-            "INSERT INTO users (email, full_name, is_active, created_at)
-                VALUES ('$email', '$fullName', '$is_active', '$created_at');"
+        $stmt = $db->prepare(
+            "INSERT INTO users (email, full_name, is_active, created_at)\n" .
+            "VALUES (?, ?, ?, NOW())"
         );
+        return $stmt->execute([
+            $email,
+            $fullName,
+            $is_active ? 1 : 0,
+        ]);
+    }
+
+    public function deleteUser(int $userId): bool
+    {
+        $db = new Database();
+        $stmt = $db->prepare(
+            'DELETE FROM users WHERE id = :id'
+        );
+        return $stmt->execute([
+            'id' => $userId,
+        ]);
     }
 
     public function showMoneyUser(): array
