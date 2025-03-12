@@ -3,16 +3,27 @@
 global $activeUsers, $moneyUsers;
 use controllers\UserController;
 
-// TODO сделать добавление пользователя
-//if (isset($_POST['email']) && isset($_POST['fullName']) && isset($_POST['isActive'])) {
-//    $form = $_POST;
-//    $email = $form['email'];
-//    $fullName = $form['fullName'];
-//    $isActive = $form['isActive'];
-//
-//    $userController = new UserController();
-//    $userController->addUser($email, $fullName, $isActive, '2025-03-11 15:37:15');
-//}
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
+    $email = $_POST['email'];
+    $fullName = $_POST['full_name'];
+    $isActive = (bool)$_POST['is_active'];
+
+    $userController = new UserController();
+    $userController->addUser($email, $fullName, $isActive);
+
+    header('Location: /dashboard');
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_id'])) {
+    $userId = (int)$_POST['user_id'];
+
+    $userController = new UserController();
+    $userController->deleteUser($userId);
+
+    header('Location: /dashboard');
+    exit;
+}
 
 ?>
 <!DOCTYPE html>
@@ -122,6 +133,30 @@ use controllers\UserController;
         .form-group button:hover {
             background-color: #357abd;
         }
+
+        .user-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .delete-form {
+            margin-left: 15px;
+        }
+
+        .delete-btn {
+            background-color: #e94e77;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .delete-btn:hover {
+            background-color: #cc445f;
+        }
     </style>
 </head>
 <body>
@@ -135,12 +170,12 @@ use controllers\UserController;
                 <input type="email" id="email" name="email" required>
             </div>
             <div class="form-group">
-                <label for="fullName">ФИО:</label>
-                <input type="text" id="fullName" name="fullName" required>
+                <label for="full_name">ФИО:</label>
+                <input type="text" id="full_name" name="full_name" required>
             </div>
             <div class="form-group">
-                <label for="isActive">Активен:</label>
-                <select id="isActive" name="isActive" required>
+                <label for="is_active">Активен:</label>
+                <select id="is_active" name="is_active" required>
                     <option value="1">Да</option>
                     <option value="0">Нет</option>
                 </select>
@@ -152,11 +187,20 @@ use controllers\UserController;
     </div>
 
     <div class="card">
-        <h2>Активные пользователи</h2>
+        <h2>Пользователи</h2>
         <p>Количество: <span class="highlight"><?= count($activeUsers) ?></span></p>
         <ul>
             <?php foreach ($activeUsers as $user): ?>
-                <li><?= $user['full_name'] ?> (<?= $user['email'] ?>)</li>
+                <li class="user-item">
+                    <div>
+                        <?= $user['full_name'] ?>
+                        (<?= $user['email'] ?>)
+                    </div>
+                    <form class="delete-form" method="POST">
+                        <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
+                        <button type="submit" class="delete-btn">Удалить</button>
+                    </form>
+                </li>
             <?php endforeach; ?>
         </ul>
     </div>
