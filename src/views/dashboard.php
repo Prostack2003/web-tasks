@@ -1,14 +1,18 @@
 <?php
 
+global $entityManager;
+require __DIR__ . '/../../bootstrap.php';
 global $activeUsers, $moneyUsers;
+
 use controllers\UserController;
+
+$userController = new UserController($entityManager);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
     $email = $_POST['email'];
     $fullName = $_POST['full_name'];
     $isActive = (bool)$_POST['is_active'];
 
-    $userController = new UserController();
     $userController->addUser($email, $fullName, $isActive);
 
     header('Location: /dashboard');
@@ -17,13 +21,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_id'])) {
     $userId = (int)$_POST['user_id'];
-
-    $userController = new UserController();
     $userController->deleteUser($userId);
 
     header('Location: /dashboard');
     exit;
 }
+
+$activeUsers = $userController->showUsers();
+$moneyUsers = $userController->showMoneyUser();
 
 ?>
 <!DOCTYPE html>
@@ -193,11 +198,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_id'])) {
             <?php foreach ($activeUsers as $user): ?>
                 <li class="user-item">
                     <div>
-                        <?= $user['full_name'] ?>
-                        (<?= $user['email'] ?>)
+                        <?= $user->getFullName() ?>
+                        (<?= $user->getEmail() ?>)
                     </div>
                     <form class="delete-form" method="POST">
-                        <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
+                        <input type="hidden" name="user_id" value="<?= $user->getId() ?>">
                         <button type="submit" class="delete-btn">Удалить</button>
                     </form>
                 </li>
@@ -208,14 +213,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_id'])) {
         <h2>Общая сумма счетов</h2>
         <p>Сумма:
             <span class="highlight">
-                <?php
-                    $result = 0;
-                    foreach ($moneyUsers as $user) {
-                        $result += $user['amount'];
-                    }
-                    echo $result
-                ?>
-            </span>
+        <?php
+        if (empty($moneyUsers)) {
+            echo "Нет данных о пользователях.";
+        } else {
+            $result = 0;
+            foreach ($moneyUsers as $user) {
+                $result += (float) $user->getAmount();
+            }
+            echo number_format($result, 2, '.', ' ');
+        }
+        ?>
+    </span>
         </p>
     </div>
     <div class="card">

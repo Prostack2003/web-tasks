@@ -2,44 +2,54 @@
 
 namespace controllers;
 
-use classes\Database;
+use entity\Invoice;
+use entity\User;
+use Doctrine\ORM\EntityManagerInterface;
 
 class UserController
 {
+    private EntityManagerInterface $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     public function showUsers(): array
     {
-        $db = new Database();
-        return $db->query("SELECT * FROM users");
+        return $this->entityManager
+            ->getRepository(User::class)
+            ->findAll();
     }
 
-    public function addUser(string $email, string $fullName, bool $is_active): bool
+    public function addUser(string $email, string $fullName, bool $isActive): void
     {
-        $db = new Database();
-        $stmt = $db->prepare(
-            "INSERT INTO users (email, full_name, is_active, created_at)\n" .
-            "VALUES (?, ?, ?, NOW())"
-        );
-        return $stmt->execute([
-            $email,
-            $fullName,
-            $is_active ? 1 : 0,
-        ]);
+        $user = new User();
+        $user->setEmail($email);
+        $user->setFullName($fullName);
+        $user->setIsActive($isActive);
+        $user->setCreatedAt(new \DateTime());
+
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
     }
 
-    public function deleteUser(int $userId): bool
+    public function deleteUser(int $userId): void
     {
-        $db = new Database();
-        $stmt = $db->prepare(
-            'DELETE FROM users WHERE id = :id'
-        );
-        return $stmt->execute([
-            'id' => $userId,
-        ]);
+        $user = $this->entityManager
+            ->getRepository(User::class)
+            ->find($userId);
+
+        if ($user) {
+            $this->entityManager->remove($user);
+            $this->entityManager->flush();
+        }
     }
 
     public function showMoneyUser(): array
     {
-        $db = new Database();
-        return $db->query("SELECT * FROM invoices");
+        return $this->entityManager
+            ->getRepository(Invoice::class)
+            ->findAll();
     }
 }
