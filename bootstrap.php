@@ -16,7 +16,7 @@ $connection = DriverManager::getConnection([
     'dbname' => $_ENV['DB_DATABASE'],
     'user' => $_ENV['DB_USERNAME'],
     'password' => $_ENV['DB_PASSWORD'],
-    'host' => $_ENV['DB_CONNECTION'],
+    'host' => $_ENV['DB_HOST'],
 ], $config);
 
 
