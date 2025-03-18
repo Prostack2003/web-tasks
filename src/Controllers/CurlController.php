@@ -1,28 +1,22 @@
 <?php
 
-declare(strict_types=1);
-
 namespace controllers;
+
+use services\EmailValidationService;
 
 class CurlController
 {
+    public function __construct(private EmailValidationService $emailValidationService)
+    {
+    }
+
     public function index(): void
     {
-        $handle = curl_init();
+        $email = 'test@example.com'; // Пример email для проверки
+        $result = $this->emailValidationService->verify($email);
 
-        $url = 'https://api.emailable.com/v1/verify?email=cool.deds@mail.ru&api_key=test_37c5b7a0b7ccff58121a';
-
-        curl_setopt($handle, CURLOPT_URL, $url);
-        curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
-
-        $content = curl_exec($handle);
-            if ($content !== false)
-            {
-                $data = json_decode($content, true);
-
-                echo "<pre>";
-                print_r($data);
-            }
-
+        echo "<pre>";
+        print_r($result);
+        echo "</pre>";
     }
 }

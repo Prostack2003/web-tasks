@@ -29,6 +29,10 @@ class ComposerStaticInit8410a3f4089e96ac9233609cbb4ba6c8
         array (
             'voku\\' => 5,
         ),
+        's' => 
+        array (
+            'services\\' => 9,
+        ),
         'm' => 
         array (
             'models\\' => 7,
@@ -40,11 +44,8 @@ class ComposerStaticInit8410a3f4089e96ac9233609cbb4ba6c8
         'c' => 
         array (
             'controllers\\' => 12,
+            'containers\\' => 11,
             'classes\\' => 8,
-        ),
-        'a' => 
-        array (
-            'attributes\\' => 11,
         ),
         'S' => 
         array (
@@ -122,6 +123,10 @@ class ComposerStaticInit8410a3f4089e96ac9233609cbb4ba6c8
         array (
             0 => __DIR__ . '/..' . '/voku/portable-ascii/src/voku',
         ),
+        'services\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Services',
+        ),
         'models\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/Models',
@@ -134,13 +139,13 @@ class ComposerStaticInit8410a3f4089e96ac9233609cbb4ba6c8
         array (
             0 => __DIR__ . '/../..' . '/src/Controllers',
         ),
+        'containers\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Containers',
+        ),
         'classes\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/Classes',
-        ),
-        'attributes\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src/Attributes',
         ),
         'Symfony\\Polyfill\\Php83\\' => 
         array (
@@ -236,9 +241,9 @@ class ComposerStaticInit8410a3f4089e96ac9233609cbb4ba6c8
         ),
         'Illuminate\\Support\\' => 
         array (
-            0 => __DIR__ . '/..' . '/illuminate/collections',
+            0 => __DIR__ . '/..' . '/illuminate/macroable',
             1 => __DIR__ . '/..' . '/illuminate/conditionable',
-            2 => __DIR__ . '/..' . '/illuminate/macroable',
+            2 => __DIR__ . '/..' . '/illuminate/collections',
             3 => __DIR__ . '/..' . '/illuminate/support',
         ),
         'Illuminate\\Pipeline\\' => 
