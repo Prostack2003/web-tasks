@@ -1,21 +1,22 @@
 <?php
 
-declare(strict_types=1);
-
 namespace controllers;
+
+use services\EmailValidationService;
 
 class CurlController
 {
+    public function __construct(private EmailValidationService $emailValidationService)
+    {
+    }
+
     public function index(): void
     {
-        $handle = curl_init();
+        $email = 'test@example.com'; // Пример email для проверки
+        $result = $this->emailValidationService->verify($email);
 
-        $url = 'https://example.com';
-
-        curl_setopt($handle, CURLOPT_URL, $url);
-
-        curl_exec($handle);
-
-        curl_close($handle);
+        echo "<pre>";
+        print_r($result);
+        echo "</pre>";
     }
 }

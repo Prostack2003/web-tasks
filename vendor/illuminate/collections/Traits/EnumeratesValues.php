@@ -342,7 +342,7 @@ trait EnumeratesValues
      *
      * @template TEnsureOfType
      *
-     * @param  class-string<TEnsureOfType>|array<array-key, class-string<TEnsureOfType>>|scalar|'array'|'null'  $type
+     * @param  class-string<TEnsureOfType>|array<array-key, class-string<TEnsureOfType>>|'string'|'int'|'float'|'bool'|'array'|'null'  $type
      * @return static<TKey, TEnsureOfType>
      *
      * @throws \UnexpectedValueException
@@ -535,8 +535,10 @@ trait EnumeratesValues
     /**
      * Get the sum of the given values.
      *
-     * @param  (callable(TValue): mixed)|string|null  $callback
-     * @return mixed
+     * @template TReturnType
+     *
+     * @param  (callable(TValue): TReturnType)|string|null  $callback
+     * @return ($callback is callable ? TReturnType : mixed)
      */
     public function sum($callback = null)
     {

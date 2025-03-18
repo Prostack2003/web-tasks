@@ -4,7 +4,9 @@
       "classes\\": "src/Classes",
       "controllers\\": "src/Controllers",
       "entity\\": "src/Entity",
-      "models\\": "src/Models"
+      "models\\": "src/Models",
+      "containers\\": "src/Containers",
+      "services\\": "src/Services"
     }
   },
   "require": {

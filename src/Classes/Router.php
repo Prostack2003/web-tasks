@@ -2,16 +2,25 @@
 
 namespace classes;
 
+
+use containers\Container;
+
 class Router
 {
     private array $routes = [];
+    private Container $container;
 
-    public function addRoute($method, $url, $handler): void
+    public function __construct(Container $container)
+    {
+        $this->container = $container;
+    }
+
+    public function addRoute(string $method, string $url, array $handler): void
     {
         $this->routes[$method][$url] = $handler;
     }
 
-    public function dispatch()
+    public function dispatch(): void
     {
         $method = $_SERVER['REQUEST_METHOD'];
         $uri = $this->normalizeUri($_SERVER['REQUEST_URI']);
@@ -25,18 +34,16 @@ class Router
         }
     }
 
-    private function callHandler($handler)
+    private function callHandler(array $handler): void
     {
-        if (is_array($handler)) {
-            [$className, $methodName] = $handler;
-            $controller = new $className();
-            $controller->$methodName();
-        } elseif (is_callable($handler)) {
-            $handler();
-        }
+        [$className, $methodName] = $handler;
+
+        $controller = $this->container->get($className);
+
+        $controller->$methodName();
     }
 
-    private function normalizeUri($uri)
+    private function normalizeUri(string $uri): string
     {
         return rtrim($uri, '/');
     }

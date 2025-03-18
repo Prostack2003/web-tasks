@@ -1,0 +1,55 @@
+[33mf0b518f[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mcurl-refactor[m[33m, [m[1;31morigin/curl-refactor[m[33m)[m HEAD@{0}: reset: moving to HEAD
+[33mf0b518f[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mcurl-refactor[m[33m, [m[1;31morigin/curl-refactor[m[33m)[m HEAD@{1}: commit: curl-refactror: добавил взаимодействие с email api
+[33mb06af7c[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{2}: checkout: moving from main to curl-refactor
+[33mb06af7c[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{3}: pull --all: Fast-forward
+[33mdc95b92[m HEAD@{4}: checkout: moving from laravel-arp to main
+[33mc4852a9[m[33m ([m[1;31morigin/laravel-arp[m[33m, [m[1;32mlaravel-arp[m[33m)[m HEAD@{5}: commit: laravel-arp: добавил использование curl
+[33m3cdea86[m HEAD@{6}: commit: laravel-arp: исправил конфиг
+[33mc2ff9ad[m HEAD@{7}: commit: laravel-arp: добавил плагин databases и events
+[33mdc95b92[m HEAD@{8}: checkout: moving from main to laravel-arp
+[33mdc95b92[m HEAD@{9}: pull --all: Fast-forward
+[33mf6da772[m HEAD@{10}: checkout: moving from migrations to main
+[33mb99d533[m[33m ([m[1;31morigin/migrations[m[33m, [m[1;32mmigrations[m[33m)[m HEAD@{11}: commit: migrations: установил и настроил orm migrations
+[33mf6da772[m HEAD@{12}: checkout: moving from main to migrations
+[33mf6da772[m HEAD@{13}: pull --all: Fast-forward
+[33ma2537cb[m HEAD@{14}: checkout: moving from orm to main
+[33md9c662a[m[33m ([m[1;31morigin/orm[m[33m, [m[1;32morm[m[33m)[m HEAD@{15}: reset: moving to HEAD
+[33md9c662a[m[33m ([m[1;31morigin/orm[m[33m, [m[1;32morm[m[33m)[m HEAD@{16}: commit: orm: исправил dashboard и интегрировал doctrine orm
+[33mdeaa290[m HEAD@{17}: commit: orm: вынес конфиг orm с бд в dashboard
+[33mfbc14cc[m HEAD@{18}: commit: orm: добавил сущности из БД
+[33m4b819b8[m HEAD@{19}: commit: orm: установил doctrine orm и добавил конфигурацию
+[33ma2537cb[m HEAD@{20}: checkout: moving from main to orm
+[33ma2537cb[m HEAD@{21}: pull --all: Fast-forward
+[33m48bdbe1[m HEAD@{22}: checkout: moving from DataBase to main
+[33m13fdc08[m[33m ([m[1;31morigin/DataBase[m[33m, [m[1;32mDataBase[m[33m)[m HEAD@{23}: commit: DataBase: добавил возможность добавления и удаления пользователей
+[33m7cd6ad4[m HEAD@{24}: commit: DataBase: добавил возможность добавления и удаления пользователей
+[33mef7c8a6[m HEAD@{25}: reset: moving to HEAD
+[33mef7c8a6[m HEAD@{26}: commit: DataBase: сделал страничку dashboard, где происходит вывод данных с бд
+[33m35d73c1[m HEAD@{27}: commit: DataBase: исправил tasks на dashboard
+[33m48bdbe1[m HEAD@{28}: checkout: moving from main to DataBase
+[33m48bdbe1[m HEAD@{29}: pull --all: Fast-forward
+[33mf0b15b3[m HEAD@{30}: checkout: moving from Routing to main
+[33m481de67[m[33m ([m[1;31morigin/Routing[m[33m, [m[1;32mRouting[m[33m)[m HEAD@{31}: commit: Routing: исправил подключение к бд
+[33m78f35ed[m HEAD@{32}: commit: Routing: изменил класс DataBase
+[33m8b9f2d7[m HEAD@{33}: commit: Routing: исправил ошибки с подключением к бд
+[33m1b5a3a1[m HEAD@{34}: commit: Routing: добавил подключение к бд и файл table
+[33m10f7c51[m HEAD@{35}: commit: Routing: использовал класс Route
+[33m1c4faf9[m HEAD@{36}: commit: Routing: написал класс Route
+[33me2f246d[m HEAD@{37}: commit: Routing: добавил класс Router
+[33mf0b15b3[m HEAD@{38}: merge main: Fast-forward
+[33m0df139f[m HEAD@{39}: reset: moving to HEAD
+[33m0df139f[m HEAD@{40}: checkout: moving from main to Routing
+[33mf0b15b3[m HEAD@{41}: pull --all: Fast-forward
+[33m0df139f[m HEAD@{42}: checkout: moving from hotfix to main
+[33me471485[m[33m ([m[1;31morigin/hotfix[m[33m, [m[1;32mhotfix[m[33m)[m HEAD@{43}: commit: hotfix: исправил dockerFiles
+[33m0df139f[m HEAD@{44}: checkout: moving from main to hotfix
+[33m0df139f[m HEAD@{45}: checkout: moving from Routing to main
+[33m0df139f[m HEAD@{46}: checkout: moving from main to Routing
+[33m0df139f[m HEAD@{47}: pull --all: Fast-forward
+[33m20e59d2[m HEAD@{48}: checkout: moving from WebServer to main
+[33m5e71687[m[33m ([m[1;31morigin/WebServer[m[33m, [m[1;32mWebServer[m[33m)[m HEAD@{49}: reset: moving to HEAD
+[33m5e71687[m[33m ([m[1;31morigin/WebServer[m[33m, [m[1;32mWebServer[m[33m)[m HEAD@{50}: commit: WebServer: переделал composer
+[33mdc91bf6[m HEAD@{51}: commit: WebServer: настроил nginx, mysqldb, docker
+[33m509ea4b[m HEAD@{52}: commit: WebServer: добавил composer для зависимостей
+[33m20e59d2[m HEAD@{53}: checkout: moving from main to WebServer
+[33m20e59d2[m HEAD@{54}: commit (initial): main: инициализация проекта
