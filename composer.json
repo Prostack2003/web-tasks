@@ -3,7 +3,8 @@
     "psr-4": {
       "classes\\": "src/Classes",
       "controllers\\": "src/Controllers",
-      "entity\\": "src/Entity"
+      "entity\\": "src/Entity",
+      "models\\": "src/Models"
     }
   },
   "require": {
@@ -14,6 +15,7 @@
     "symfony/cache": "^7",
     "doctrine/migrations": "^3.8",
     "illuminate/database": "^12.2",
-    "illuminate/events": "^12.2"
+    "illuminate/events": "^12.2",
+    "ext-curl": "*"
   }
 }

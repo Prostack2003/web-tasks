@@ -2,13 +2,11 @@
 
 declare(strict_types=1);
 
-require_once "vendor/autoload.php";
-
-
 use Dotenv\Dotenv;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Container\Container;
+require_once "vendor/autoload.php";
 
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();

@@ -29,6 +29,10 @@ class ComposerStaticInit8410a3f4089e96ac9233609cbb4ba6c8
         array (
             'voku\\' => 5,
         ),
+        'm' => 
+        array (
+            'models\\' => 7,
+        ),
         'e' => 
         array (
             'entity\\' => 7,
@@ -37,6 +41,10 @@ class ComposerStaticInit8410a3f4089e96ac9233609cbb4ba6c8
         array (
             'controllers\\' => 12,
             'classes\\' => 8,
+        ),
+        'a' => 
+        array (
+            'attributes\\' => 11,
         ),
         'S' => 
         array (
@@ -114,6 +122,10 @@ class ComposerStaticInit8410a3f4089e96ac9233609cbb4ba6c8
         array (
             0 => __DIR__ . '/..' . '/voku/portable-ascii/src/voku',
         ),
+        'models\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Models',
+        ),
         'entity\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/Entity',
@@ -125,6 +137,10 @@ class ComposerStaticInit8410a3f4089e96ac9233609cbb4ba6c8
         'classes\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/Classes',
+        ),
+        'attributes\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Attributes',
         ),
         'Symfony\\Polyfill\\Php83\\' => 
         array (
