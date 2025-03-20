@@ -12,7 +12,7 @@ class CurlController
 
     public function index(): void
     {
-        $email = 'test@example.com'; // Пример email для проверки
+        $email = 'cool.deds@mail.ru';
         $result = $this->emailValidationService->verify($email);
 
         echo "<pre>";
